@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="centerstage">
+        {% if object_list %}
+            <table class="table table-striped">
+                <thead>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Primer Apellido</th>
+                    <th scope="col">Segundo Apellido</th>
+                    <th scope="col">Tipo de Identificacion</th>
+                    <th scope="col">Número de Identificación</th>
+                    <th scope="col">Correo Electrónico</th>
+                    <th scope="col">Teléfono</th>
+                </thead>
+                <tbody>
+                    {% for persona in object_list %}
+                        <tr>
+                            <td>{{ persona.nombres }}</td>
+                            <td>{{ persona.primer_apellido }}</td>
+                            <td>{{ persona.segundo_apellido }}</td>
+                            <td>{{ persona.tipo_identificacion }}</td>
+                            <td>{{ persona.identificacion }}</td>
+                            <td>{{ persona.email }}</td>
+                            <td>{{ persona.telefono }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        {% else %}
+        <h1>No hay lista</h1>
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="centerstage">
+        {% if object_list %}
+            <table class="table table-striped">
+                <thead>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio de Venta</th>
+                </thead>
+                <tbody>
+                    {% for servicio in object_list %}
+                        <tr>
+                            <td>{{ servicio.nombre }}</td>
+                            <td>{{ servicio.descripcion }}</td>
+                            <td>{{ servicio.precio_venta }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        {% else %}
+        <h1>No hay lista</h1>
+        {% endif %}
+    </div>
+{% endblock content %}
