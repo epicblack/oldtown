@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Rol(models.Model):
     nombre = models.CharField(max_length=20)
 
@@ -23,11 +25,16 @@ class TipoIdentificacion(models.Model):
         return self.abreviacion
 
 
+def get_default_rol():
+    return Rol.objects.get(id=2)
+
+
 class Persona(models.Model):
     nombres = models.CharField(max_length=30)
     primer_apellido = models.CharField(max_length=20)
     segundo_apellido = models.CharField(max_length=10, blank=True)
-    tipo_identificacion = models.ForeignKey(TipoIdentificacion, null=True, on_delete=models.SET_NULL)
+    tipo_identificacion = models.ForeignKey(
+        TipoIdentificacion, null=True, on_delete=models.SET_NULL)
     identificacion = models.IntegerField(unique=True)
     genero = models.ForeignKey(Genero, null=True, on_delete=models.SET_NULL)
     email = models.EmailField(blank=True, unique=True)
@@ -36,6 +43,9 @@ class Persona(models.Model):
     nacimiento = models.DateField(null=True, blank=True)
     rol = models.ManyToManyField(Rol)
     fecha_registro = models.DateField(auto_now=True)
+
+    class Meta:
+        unique_together = ('tipo_identificacion', 'identificacion',)
 
     def __str__(self):
         return f'{self.tipo_identificacion} {self.identificacion}'

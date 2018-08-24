@@ -1,21 +1,38 @@
 from django.shortcuts import render
-from django.views.generic import (TemplateView, ListView, 
+from django.urls import reverse_lazy
+from django.views.generic import (TemplateView, ListView,
                                   DetailView, CreateView,
                                   UpdateView, DeleteView)
 from apps.inventario.models import Producto, Servicio
+from apps.inventario.forms import ProductoForm, ServicioForm
 
 # Create your views here.
+
+
 class ProductoListView(ListView):
     model = Producto
-    template_name = 'inventario/producto_list.html'  # Specify your own template name/location
+    # Specify your own template name/location
+    template_name = 'inventario/producto_list.html'
     queryset = Producto.objects.all()
 
-# Create your views here.
+
+class ProductoCreate(CreateView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = 'inventario/producto_crear.html'
+    success_url = reverse_lazy('productos-list')
+
+
 class ServicioListView(ListView):
     model = Servicio
-    template_name = 'inventario/servicio_list.html'  # Specify your own template name/location
+    # Specify your own template name/location
+    template_name = 'inventario/servicio_list.html'
 
     queryset = Servicio.objects.all()
 
-    # def get_queryset(self):
-    #     return Servicio.objects.order_by('-nombre')
+
+class ServicioCreate(CreateView):
+    model = Servicio
+    form_class = ServicioForm
+    template_name = 'inventario/servicio_crear.html'
+    success_url = reverse_lazy('servicios-list')

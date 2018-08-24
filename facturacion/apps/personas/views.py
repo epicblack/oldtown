@@ -10,7 +10,8 @@ from apps.personas.forms import PersonaForm
 
 class PersonaListView(ListView):
     model = Persona
-    queryset = Persona.objects.all().order_by('primer_apellido')
+    queryset = Persona.objects.filter(
+        rol__nombre='Cliente').order_by('primer_apellido')
     context_object_name = 'personas'
     template_name = 'personas/personas_list.html'
 
@@ -18,5 +19,5 @@ class PersonaListView(ListView):
 class PersonaCreate(CreateView):
     model = Persona
     form_class = PersonaForm
-    template_name = 'personas/personas_form.html'
+    template_name = 'personas/personas_crear.html'
     success_url = reverse_lazy('personas-list')

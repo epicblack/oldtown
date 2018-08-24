@@ -3,6 +3,11 @@ from apps.personas.models import Persona
 from datetime import datetime
 
 YEARS = sorted(list(range(1950, datetime.now().year)), reverse=True)
+# MONTHS = {
+#     1: _('Enero'), 2: _('Febrero'), 3: _('Marzo'), 4: _('Abril'),
+#     5: _('Mayo'), 6: _('Junio'), 7: _('Julio'), 8: _('Agosto'),
+#     9: _('Septiembre'), 10: _('Octubre'), 11: _('Noviembre'), 12: _('Diciembre')
+# }
 
 
 class PersonaForm(forms.ModelForm):
@@ -45,5 +50,5 @@ class PersonaForm(forms.ModelForm):
             'telefono': forms.TextInput(attrs={'class': 'form-control'}),
             'direccion': forms.TextInput(attrs={'class': 'form-control'}),
             'nacimiento': forms.SelectDateWidget(years=YEARS, attrs={'class': 'form-control'}),
-            'rol': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            'rol': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
