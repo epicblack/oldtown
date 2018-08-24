@@ -1,11 +1,22 @@
 from django.shortcuts import render
-from django.views.generic import (TemplateView, ListView, 
+from django.urls import reverse_lazy
+from django.views.generic import (TemplateView, ListView,
                                   DetailView, CreateView,
                                   UpdateView, DeleteView)
 from apps.personas.models import Persona
-
+from apps.personas.forms import PersonaForm
 # Create your views here.
+
+
 class PersonaListView(ListView):
     model = Persona
-    template_name = 'personas/personas_list.html'  # Specify your own template name/location
-    queryset = Persona.objects.all()
+    queryset = Persona.objects.all().order_by('primer_apellido')
+    context_object_name = 'personas'
+    template_name = 'personas/personas_list.html'
+
+
+class PersonaCreate(CreateView):
+    model = Persona
+    form_class = PersonaForm
+    template_name = 'personas/personas_form.html'
+    success_url = reverse_lazy('personas-list')
