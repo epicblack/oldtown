@@ -15,6 +15,9 @@
                 <td>{{ producto.descripcion }}</td>
                 <td>{{ producto.precio_venta }}</td>
                 <td>{{ producto.cantidad }}</td>
+                <td>
+                    <a href="{% url 'producto-editar' producto.pk %}" class="btn btn-primary">Editar</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -23,7 +26,7 @@
     {% else %}
     <h1>No hay lista</h1>
     {% endif %}
-    <a class="btn btn-primary" href="{% url 'producto-crear' %}">Nuevo</a>
+    <a class="btn btn-success" href="{% url 'producto-crear' %}">Nuevo</a>
 
 </div>
 {% endblock content %}

@@ -3,16 +3,20 @@
     {% if object_list %}
     <table class="table table-striped">
         <thead>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Precio de Venta</th>
+            <th class="text-center" scope="col">Nombre</th>
+            <th class="text-center" scope="col">Descripción</th>
+            <th class="text-center" scope="col">Precio de Venta</th>
         </thead>
         <tbody>
             {% for servicio in object_list %}
             <tr>
-                <td>{{ servicio.nombre }}</td>
+                <td class="">{{ servicio.nombre }}</td>
                 <td>{{ servicio.descripcion }}</td>
                 <td>{{ servicio.precio_venta }}</td>
+                <td>
+                    <a href="{% url 'servicio-editar' servicio.pk %}" class="btn btn-primary">Editar</a>
+                </td>
+
             </tr>
             {% endfor %}
         </tbody>
@@ -21,6 +25,6 @@
     {% else %}
     <h1>No hay lista</h1>
     {% endif %}
-    <a href="{% url 'servicio-crear' %}" class="btn btn-primary">Nuevo</a>
+    <a href="{% url 'servicio-crear' %}" class="btn btn-success">Nuevo</a>
 </div>
 {% endblock content %}

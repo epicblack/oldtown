@@ -21,6 +21,9 @@
                 <td class="text-right">{{ persona.identificacion }}</td>
                 <td>{{ persona.email }}</td>
                 <td class="text-right">{{ persona.telefono }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'personas-editar' persona.id %}">Editar</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -29,6 +32,6 @@
     {% else %}
     <h1>No hay lista</h1>
     {% endif %}
-    <a class="btn btn-primary" href="{% url 'personas-create' %}">Nuevo</a>
+    <a class="btn btn-success" href="{% url 'personas-create' %}">Nuevo</a>
 </div>
 {% endblock content %}

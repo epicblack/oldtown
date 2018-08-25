@@ -23,6 +23,13 @@ class ProductoCreate(CreateView):
     success_url = reverse_lazy('productos-list')
 
 
+class ProductoUpdate(UpdateView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = 'inventario/producto_crear.html'
+    success_url = reverse_lazy('productos-list')
+
+
 class ServicioListView(ListView):
     model = Servicio
     # Specify your own template name/location
@@ -32,6 +39,13 @@ class ServicioListView(ListView):
 
 
 class ServicioCreate(CreateView):
+    model = Servicio
+    form_class = ServicioForm
+    template_name = 'inventario/servicio_crear.html'
+    success_url = reverse_lazy('servicios-list')
+
+
+class ServicioUpdate(UpdateView):
     model = Servicio
     form_class = ServicioForm
     template_name = 'inventario/servicio_crear.html'
